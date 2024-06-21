@@ -86,6 +86,7 @@ def create_app(test_config=None):
     
     @app.route("/logout")
     def logout():
+        token = session.get('user')['access_token']
         session.clear()
         return redirect("/home")
     
