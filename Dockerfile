@@ -11,7 +11,7 @@
 # RUN pip install -r requirements.txt
 
 
-FROM python:3.12.2-slim as app
+FROM python:3.9.19-slim as app
 # COPY --from=builder /root/.local /root/.local1
 # COPY --from=builder /app .
 COPY . /app

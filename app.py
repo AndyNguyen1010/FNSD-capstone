@@ -137,7 +137,7 @@ def create_app(test_config=None):
         """
         all_actors = Actor.query.all()
         if len(all_actors) == 0:
-            print('No records')
+            abort(404)
         actors = []
         for actor in all_actors:
             actors.append({
