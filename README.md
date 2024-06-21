@@ -4,7 +4,7 @@
 
 ### Installing Dependencies
 
-#### Python 3.12
+#### Python 3.9
 
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
@@ -211,3 +211,4 @@ To run the tests, run
 ```
 python test_app.py
 ```
+
