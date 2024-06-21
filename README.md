@@ -62,9 +62,9 @@ http://a663da6d9ddfd4667885f6cbef6c1417-461432304.us-east-2.elb.amazonaws.com/lo
 ### User Test
 
 #### Manage role 
-tannv20@udacity.com/Udacity@1235
+andy1010@udacity.com/andy@1010
 #### Barista role
-view_user@udacity.com/Udacity@1235
+barita1010@udacity.com/andy@1010
 
 #### SwaggerUI
 ##### get token from `http://a663da6d9ddfd4667885f6cbef6c1417-461432304.us-east-2.elb.amazonaws.com/login`
