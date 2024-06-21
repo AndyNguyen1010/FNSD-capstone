@@ -3,6 +3,7 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: EKSWSV1
 
+
 Parameters:
 
   EksClusterName:
@@ -61,6 +62,7 @@ Parameters:
     MaxLength: 100
     ConstraintDescription: You must enter a kubectl IAM role
 
+
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -117,11 +119,9 @@ Resources:
         ZipFile: |
           import json
           import boto3
-          from botocore.vendored import requests
           import urllib3
-
+          from botocore.vendored import requests
           def handler(event, context):
-            print(event)
             response = {
               'Status': 'SUCCESS',
               "Reason": "See the details in CloudWatch Log Stream: " + context.log_stream_name,
