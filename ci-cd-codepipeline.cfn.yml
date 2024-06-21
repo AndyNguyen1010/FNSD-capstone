@@ -3,7 +3,6 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: EKSWSV1
 
-
 Parameters:
 
   EksClusterName:
@@ -62,7 +61,6 @@ Parameters:
     MaxLength: 100
     ConstraintDescription: You must enter a kubectl IAM role
 
-
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -119,9 +117,11 @@ Resources:
         ZipFile: |
           import json
           import boto3
-          import urllib3
           from botocore.vendored import requests
+          import urllib3
+
           def handler(event, context):
+            print(event)
             response = {
               'Status': 'SUCCESS',
               "Reason": "See the details in CloudWatch Log Stream: " + context.log_stream_name,
@@ -196,15 +196,15 @@ Resources:
                   - iam:GetRole
                   - iam:UpdateAssumeRolePolicy
 
-  KubectlAssumeRoleCustomResource:
-    Type: Custom::CustomResource
-    Properties:
-      ServiceToken: !GetAtt CustomResourceLambda.Arn
-      KubectlRoleName: !Ref KubectlRoleName
-      CodeBuildServiceRoleArn: !GetAtt CodeBuildServiceRole.Arn
-    DependsOn:
-      - CustomResourceLambda
-      - CodeBuildServiceRole
+  # KubectlAssumeRoleCustomResource:
+  #   Type: Custom::CustomResource
+  #   Properties:
+  #     ServiceToken: !GetAtt CustomResourceLambda.Arn
+  #     KubectlRoleName: !Ref KubectlRoleName
+  #     CodeBuildServiceRoleArn: !GetAtt CodeBuildServiceRole.Arn
+  #   DependsOn:
+  #     - CustomResourceLambda
+  #     - CodeBuildServiceRole
 
   CodePipelineServiceRole:
     Type: AWS::IAM::Role
@@ -333,7 +333,7 @@ Resources:
         PrivilegedMode: true
       Name: !Ref AWS::StackName
       ServiceRole: !GetAtt CodeBuildServiceRole.Arn
-    DependsOn: KubectlAssumeRoleCustomResource
+    # DependsOn: KubectlAssumeRoleCustomResource
 
   CodePipelineGitHub:
     Type: AWS::CodePipeline::Pipeline
