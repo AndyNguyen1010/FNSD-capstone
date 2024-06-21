@@ -1,8 +1,6 @@
 import os
 import collections
 import json
-# collections.Iterable = collections.abc.Iterable
-# collections.Mapping = collections.abc.Mapping
 
 from flask import Flask, request, abort, jsonify, render_template, session, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -55,23 +53,11 @@ def create_app(test_config=None):
         },
         server_metadata_url=f'https://{AUTH0_DOMAIN}/.well-known/openid-configuration'
     )
-    # oauth.register(
-    #     "auth0",
-    #     client_id= AUTH0_CLIENT_ID,
-    #     client_secret= AUTH0_CLIENT_SECRET,
-    #     client_kwargs={
-    #         "response_mode" : "query"
-    #     },
-    #     api_base_url=AUTH0_DOMAIN,
-    #     access_token_url=AUTH0_DOMAIN + '/oauth/token',
-    #     authorize_url=AUTH0_DOMAIN + '/authorize',
-    # )
 
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
         response.headers.add('Access-Control-Allow-Headers', 'GET, POST, PATCH, DELETE, OPTIONS')
-        # response.headers.add("Access-Control-Allow-Origin", "*")
         return response
     
 
@@ -100,20 +86,8 @@ def create_app(test_config=None):
     
     @app.route("/logout")
     def logout():
-        #token = session.get('user')['access_token']
         session.clear()
         return redirect("/home")
-        # return redirect(
-        #     "https://" + AUTH0_DOMAIN
-        #     + "/oidc/logout?"
-        #     + urlencode(
-        #         {
-        #             "id_token_hint": token,
-        #             "post_logout_redirect_uri": url_for("home", _external=True),
-        #         },
-        #         quote_via=quote_plus,
-        #     )
-        # )
     
 
     @app.route('/actors', methods=['GET'])
