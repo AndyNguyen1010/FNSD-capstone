@@ -38,9 +38,9 @@ phases:
       - echo $EKS_CLUSTER_NAME
       - echo $EKS_KUBECTL_ROLE_ARN
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_KUBECTL_ROLE_ARN
-      - kubectl apply -f capstone_jwt_api.yml 
+      - kubectl apply -f simple-jwt-api.yml 
      # - kubectl get services eksctl-simple-jwt-api -o wide 
-      - printf '[{"name":"capstone_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
+      - printf '[{"name":"simple-jwt-api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 artifacts:
   files: build.json
 env:

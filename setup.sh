@@ -1,6 +1,6 @@
 
 
-eksctl create cluster --name capstone-jwt-api
+eksctl create cluster --name simple-jwt-api
 kubectl get nodes
 aws sts get-caller-identity --query Account --output text
 aws iam create-role --role-name UdacityFlaskDeployCBKubectlRole --assume-role-policy-document file://trust.json --output text --query 'Role.Arn'
